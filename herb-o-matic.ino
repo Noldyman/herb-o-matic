@@ -119,7 +119,7 @@ void publishData(){
     successBlink();
     
     char payload[40];
-    sprintf(payload, "{\"soilMoistMoistness\": %i, \"pumpWasActive\": %s}", averageSoilMoistness, pumpWasActive ? "true" : "false");
+    sprintf(payload, "{\"soilMoistness\": %i, \"pumpWasActive\": %s}", averageSoilMoistness, pumpWasActive ? "true" : "false");
     boolean published = client.publish(pub_topic, payload);
     delay(500);
     
