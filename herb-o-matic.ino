@@ -43,6 +43,7 @@ void handleError(char* errorText){
   Serial.print("Error: ");
   Serial.print(errorText);
   errorBlink(10);
+  ESP.deepSleep(1 * 60 * 6e7);
 }
 
 void connectWifi(){
@@ -69,7 +70,7 @@ void connectWifi(){
 }
 
 int measureSoilMoistPercentage(){
-  return constrain(map(analogRead(soilMoistPin), 640, 230, 0, 100), 0, 100);  
+  return constrain(map(analogRead(soilMoistPin), 630, 240, 0, 100), 0, 100);  
 }
 
 void calculateAverageSoilMoistness(int numOfMeasurements, int timeBetweenMeasurementsInMS){
@@ -102,7 +103,7 @@ void pumpWater(int pumpTimeInS){
 }
 
 void decideToPump(){
-  if(averageSoilMoistness < 30){
+  if(averageSoilMoistness < 40){
     pumpWater(60);
     pumpWasActive = true;
   }else{
